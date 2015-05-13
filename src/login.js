@@ -37,12 +37,22 @@
                     }
               }
 
+              function isPasswordInputInvalid() {
+                  if ( $('#password').val().length < 8 ){
+                        setStatusMessage('Invalid password - Thats not a real password, try again Cyberman');
+                        return true;
+                  }
+                  else {
+                    return false;
+                  }
+              }
+
               function loginButtonEventHandler(){
                     if ( isEmailInputInvalid() ){
                         // Not the most elegant refactor, but it works
                     }
-                    else if ( $('#password').val().length < 8 ){
-                        setStatusMessage('Invalid password - Thats not a real password, try again Cyberman');
+                    else if ( isPasswordInputInvalid() ){
+
                     }
                     else {
                         $.ajax({
