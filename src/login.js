@@ -10,41 +10,29 @@
                     forgotPasswordButtonEventHandler();
               });
 
+              function setStatusMessage( statusMessage ){
+                  $('#status').show();
+                  $('#status').html( statusMessage );
+                  $('#status').addClass('alert');
+                  $('#status').addClass('alert-danger');
+                  $('#status').delay( 2000 ).hide( 1000 );
+              }
+
               function loginButtonEventHandler(){
                 if ( $('#email').val().length < 5 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - Thats not a real email, try again Darlek');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - Thats not a real email, try again Darlek');
                     }
                     else if ( $('#email').val().indexOf('@') === -1 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
                     }
                     else if ( $('#email').val().indexOf('.', $('#email').val().indexOf('@')) === -1 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
                     }
                     else if ( $('#email').val().charAt($('#email').val().length - 1) === '.' ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
                     }
                     else if ( $('#password').val().length < 8 ){
-                        $('#status').show();
-                        $('#status').html('Invalid password - Thats not a real password, try again Cyberman');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid password - Thats not a real password, try again Cyberman');
                     }
                     else {
                         $.ajax({
@@ -57,59 +45,31 @@
                           .done( function( data ) {
                               var ajaxResponse = JSON.parse(data);
                               if ( ajaxResponse.RESULT == '200' ){
-                                  $('#status').show();
-                                  $('#status').html('TARDIS Access Granted - Please wait for the Doctor to take you for a spin');
-                                  $('#status').addClass('alert');
-                                  $('#status').addClass('alert-danger');
-                                  $('#status').delay( 2000 ).hide( 1000 );
+                                  setStatusMessage('TARDIS Access Granted - Please wait for the Doctor to take you for a spin');
                               }
                               else {
-                                  $('#status').show();
-                                  $('#status').html('Did you lose your TARDIS key? Please try to login again.');
-                                  $('#status').addClass('alert');
-                                  $('#status').addClass('alert-danger');
-                                  $('#status').delay( 2000 ).hide( 1000 );
+                                  setStatusMessage('Did you lose your TARDIS key? Please try to login again.');
                               }
                           })
                           .fail( function( data) {
                               //console.log( data );
-                              $('#status').show();
-                              $('#status').html('The TARDIS is lost in a timey whimey vortex - try back later.');
-                              $('#status').addClass('alert');
-                              $('#status').addClass('alert-danger');
-                              $('#status').delay( 2000 ).hide( 1000 );
+                              setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
                           });
                     }
               }
 
               function forgotPasswordButtonEventHandler(){
                 if ( $('#forgotEmail').val().length < 5 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - Thats not a real email, try again Darlek');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - Thats not a real email, try again Darlek');
                     }
                     else if ( $('#forgotEmail').val().indexOf('@') <= 1 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
                     }
                     else if ( $('#forgotEmail').val().indexOf('.', $('#forgotEmail').val().indexOf('@')) === -1 ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
                     }
                     else if ( $('#forgotEmail').val().charAt($('#forgotEmail').val().length - 1) === '.' ){
-                        $('#status').show();
-                        $('#status').html('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
-                        $('#status').addClass('alert');
-                        $('#status').addClass('alert-danger');
-                        $('#status').delay( 2000 ).hide( 1000 );
+                        setStatusMessage('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
                     }
                     else {
                       $.ajax({
@@ -122,27 +82,15 @@
                         .done( function( data ) {
                           var ajaxResponse = JSON.parse(data);
                           if ( ajaxResponse.RESULT == '200' ){
-                              $('#status').show();
-                              $('#status').html("TARDIS is resetting your password, please check email for your Notification");
-                              $('#status').addClass('alert');
-                              $('#status').addClass('alert-danger');
-                              $('#status').delay( 2000 ).hide( 1000 );
+                              setStatusMessage("TARDIS is resetting your password, please check email for your Notification");
                           }
                           else {
-                              $('#status').show();
-                              $('#status').html("That email address doesn't exist in this dimension");
-                              $('#status').addClass('alert');
-                              $('#status').addClass('alert-danger');
-                              $('#status').delay( 2000 ).hide( 1000 );
+                              setStatusMessage("That email address doesn't exist in this dimension");
                           }
                         })
                         .fail( function( data) {
                             //console.log( data );
-                            $('#status').show();
-                            $('#status').html('The TARDIS is lost in a timey whimey vortex - try back later.');
-                            $('#status').addClass('alert');
-                            $('#status').addClass('alert-danger');
-                            $('#status').delay( 2000 ).hide( 1000 );
+                            setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
                         });
                     }
               }
