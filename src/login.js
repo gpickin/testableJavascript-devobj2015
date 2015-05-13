@@ -15,20 +15,20 @@
                   $('#status').delay( 2000 ).hide( 1000 );
               }
 
-              function isEmailInputInvalid(){
-                    if ( $('#email').val().length < 5 ){
+              function isEmailInputInvalid( emailField ){
+                    if ( emailField.val().length < 5 ){
                         setStatusMessage('Invalid Email - Thats not a real email, try again Darlek');
                         return true;
                     }
-                    else if ( $('#email').val().indexOf('@') === -1 ){
+                    else if ( emailField.val().indexOf('@') === -1 ){
                         setStatusMessage('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
                         return true;
                     }
-                    else if ( $('#email').val().indexOf('.', $('#email').val().indexOf('@')) === -1 ){
+                    else if ( emailField.val().indexOf('.', emailField.val().indexOf('@')) === -1 ){
                         setStatusMessage('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
                         return true;
                     }
-                    else if ( $('#email').val().charAt($('#email').val().length - 1) === '.' ){
+                    else if ( emailField.val().charAt( emailField.val().length - 1) === '.' ){
                         setStatusMessage('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
                         return true;
                     }
@@ -48,11 +48,11 @@
               }
 
               function loginButtonEventHandler(){
-                    if ( isEmailInputInvalid() ){
+                    if ( isEmailInputInvalid( $('#email') ) ){
                         // Not the most elegant refactor, but it works
                     }
                     else if ( isPasswordInputInvalid() ){
-
+                        // Not the most elegant refactor, but it works
                     }
                     else {
                         $.ajax({
@@ -79,17 +79,8 @@
               }
 
               function forgotPasswordButtonEventHandler(){
-                if ( $('#forgotEmail').val().length < 5 ){
-                        setStatusMessage('Invalid Email - Thats not a real email, try again Darlek');
-                    }
-                    else if ( $('#forgotEmail').val().indexOf('@') <= 1 ){
-                        setStatusMessage('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
-                    }
-                    else if ( $('#forgotEmail').val().indexOf('.', $('#forgotEmail').val().indexOf('@')) === -1 ){
-                        setStatusMessage('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
-                    }
-                    else if ( $('#forgotEmail').val().charAt($('#forgotEmail').val().length - 1) === '.' ){
-                        setStatusMessage('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
+                    if ( isEmailInputInvalid( $('#forgotEmail') ) ){
+                        // Empty if
                     }
                     else {
                       $.ajax({
