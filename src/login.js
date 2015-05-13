@@ -63,19 +63,27 @@
                               dataType: "text"
                           })
                           .done( function( data ) {
-                              var ajaxResponse = JSON.parse(data);
-                              if ( ajaxResponse.RESULT == '200' ){
-                                  setStatusMessage('TARDIS Access Granted - Please wait for the Doctor to take you for a spin');
-                              }
-                              else {
-                                  setStatusMessage('Did you lose your TARDIS key? Please try to login again.');
-                              }
+                              processLoginAjaxDone( data );
                           })
                           .fail( function( data) {
-                              //console.log( data );
-                              setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
+                              processLoginAjaxFail( data );
                           });
                     }
+              }
+
+              function processLoginAjaxDone( data ){
+                  var ajaxResponse = JSON.parse(data);
+                  if ( ajaxResponse.RESULT == '200' ){
+                      setStatusMessage('TARDIS Access Granted - Please wait for the Doctor to take you for a spin');
+                  }
+                  else {
+                      setStatusMessage('Did you lose your TARDIS key? Please try to login again.');
+                  }
+              }
+
+              function processLoginAjaxFail( data ){
+                  //console.log( data );
+                  setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
               }
 
               function forgotPasswordButtonEventHandler(){
@@ -91,19 +99,28 @@
                             dataType: "text"
                         })
                         .done( function( data ) {
-                          var ajaxResponse = JSON.parse(data);
-                          if ( ajaxResponse.RESULT == '200' ){
-                              setStatusMessage("TARDIS is resetting your password, please check email for your Notification");
-                          }
-                          else {
-                              setStatusMessage("That email address doesn't exist in this dimension");
-                          }
+                            processForgotPasswordAjaxDone( data );
                         })
                         .fail( function( data) {
-                            //console.log( data );
-                            setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
+                            processForgotPasswordAjaxFail( data );
                         });
                     }
               }
+
+              function processForgotPasswordAjaxDone( data ){
+                  var ajaxResponse = JSON.parse(data);
+                  if ( ajaxResponse.RESULT == '200' ){
+                      setStatusMessage("TARDIS is resetting your password, please check email for your Notification");
+                  }
+                  else {
+                      setStatusMessage("That email address doesn't exist in this dimension");
+                  }
+              }
+
+              function processForgotPasswordAjaxFail( data ){
+                  //console.log( data );
+                  setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
+              }
+
         });
 
