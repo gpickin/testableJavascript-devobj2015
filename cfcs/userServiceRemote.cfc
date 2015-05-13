@@ -3,7 +3,7 @@ component name="userServiceRemote" {
 	remote function login( required string email, required string password ) returnType="struct" returnFormat="json" {
 		var result = {};
 		if ( email == 'gavin@gavin.co.nz'){
-			if ( password == 'secret'){
+			if ( password == 'topsecret'){
 				result.result = 200;
 			}
 			else {
