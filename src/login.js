@@ -1,6 +1,3 @@
-
-    <script>
-
         $(document).on('ready', function(){
               $('#btn_login').on('click', function(){
                     loginButtonEventHandler();
@@ -109,4 +106,4 @@
               }
         });
 
-    </script>
+    
