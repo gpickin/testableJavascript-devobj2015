@@ -1,4 +1,5 @@
-        $(document).on('ready', function(){
+        
+
               $('#btn_login').on('click', function(){
                     loginButtonEventHandler();
               });
@@ -55,7 +56,7 @@
                         // Not the most elegant refactor, but it works
                     }
                     else {
-                        $.ajax({
+                        callAjax({
                               type: "POST",
                               url: "http://devobj2015:8504/testablejavascript/cfcs/userServiceRemote.cfc?method=login",
                               data: ( { email: $('#email').val(), password: $('#password').val() } ),
@@ -91,7 +92,7 @@
                         // Empty if
                     }
                     else {
-                      $.ajax({
+                      callAjax({
                             type: "POST",
                             url: "http://devobj2015:8504/testablejavascript/cfcs/userServiceRemote.cfc?method=resetPassword",
                             data: ( { email: $('#forgotEmail').val() } ),
@@ -105,6 +106,11 @@
                             processForgotPasswordAjaxFail( data );
                         });
                     }
+              }
+
+              function callAjax( args, ajaxMethod ){
+                  var ajax = ajaxMethod || $.ajax;
+                  return ajax( args );
               }
 
               function processForgotPasswordAjaxDone( data ){
@@ -122,5 +128,4 @@
                   setStatusMessage('The TARDIS is lost in a timey whimey vortex - try back later.');
               }
 
-        });
 
