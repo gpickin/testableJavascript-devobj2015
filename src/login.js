@@ -17,19 +17,19 @@
               }
 
               function isEmailInputInvalid( emailField ){
-                    if ( emailField.val().length < 5 ){
+                    if ( emailField.length < 5 ){
                         setStatusMessage('Invalid Email - Thats not a real email, try again Darlek');
                         return true;
                     }
-                    else if ( emailField.val().indexOf('@') === -1 ){
+                    else if ( emailField.indexOf('@') === -1 ){
                         setStatusMessage('Invalid Email - Where are you @... obviously not from around here with an email with no @, try again PUNY HUMAN');
                         return true;
                     }
-                    else if ( emailField.val().indexOf('.', emailField.val().indexOf('@')) === -1 ){
+                    else if ( emailField.indexOf('.', emailField.indexOf('@')) === -1 ){
                         setStatusMessage('Invalid Email - TARDIS requires a full stop, especially in this domain, try again time traveler');
                         return true;
                     }
-                    else if ( emailField.val().charAt( emailField.val().length - 1) === '.' ){
+                    else if ( emailField.charAt( emailField.length - 1) === '.' ){
                         setStatusMessage('Invalid Email - TARDIS requires a full stop, but this is not the end of the line, try again time traveler');
                         return true;
                     }
