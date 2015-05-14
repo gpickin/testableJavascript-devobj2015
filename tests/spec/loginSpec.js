@@ -15,3 +15,41 @@ describe("Forgotten Password Form", function() {
   });
 
 });  
+
+describe("Login Form", function() {
+  
+  beforeEach(function() {
+  
+  });
+
+  it("should set status correct status message with successful Ajax Response", function() {
+    spyOn( window, "setStatusMessage");
+
+    processLoginAjaxDone('{"RESULT":"200"}');
+
+    expect(setStatusMessage).toHaveBeenCalled();
+    expect(setStatusMessage).toHaveBeenCalledWith('TARDIS Access Granted - Please wait for the Doctor to take you for a spin');
+  });
+
+
+  it("should set status correct status message with unsuccessful Ajax Response", function() {
+    spyOn( window, "setStatusMessage");
+
+    processLoginAjaxDone('{"RESULT":"400"}');
+
+    expect(setStatusMessage).toHaveBeenCalled();
+    expect(setStatusMessage).toHaveBeenCalledWith('Did you lose your TARDIS key? Please try to login again.');
+  });
+
+  it("should set status correct status message with failing Ajax Response", function() {
+    spyOn( window, "setStatusMessage");
+
+    processLoginAjaxFail('{"ERROR":"ANYTHING"}');
+
+    expect(setStatusMessage).toHaveBeenCalled();
+    expect(setStatusMessage).toHaveBeenCalledWith('The TARDIS is lost in a timey whimey vortex - try back later.');
+  });
+
+});  
+
+
